@@ -10,13 +10,9 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
-/**
- * @author mmueller
- */
 public class StreamsDemo {
 
     public static void main(String[] args) {
-
         showParallelProblem();
         System.out.println("started");
         Persons persons = Persons.getInstance();
@@ -26,32 +22,27 @@ public class StreamsDemo {
 
     private static void showParallelProblem() {
         long[] result = new long[1];
-
         for (int i = 0; i < 10; i++) {
             result[0] = 0;
             LongStream.range(0, 1000).forEach(n -> result[0] = (result[0] + n) * n);
             System.out.println("serial: " + result[0]);
         }
-
         for (int i = 0; i < 10; i++) {
             result[0] = 0;
             LongStream.range(0, 1000).parallel().forEach(n -> result[0] = (result[0] + n) * n);
             System.out.println("parallel: " + result[0]);
         }
-
         for (int i = 0; i < 10; i++) {
             result[0] = 0;
             LongStream.range(0, 1000).parallel().forEachOrdered(n -> result[0] = (result[0] + n) * n);
             System.out.println("parallel ordered: " + result[0]);
         }
-
         long reduce = LongStream.range(0, 1000).reduce(0, (a, c) -> (a + c) * c);
         System.out.println("reduce: " + reduce);
     }
 
     private static void countVendors(List<Person> persons) {
         invokeMethod("Vendors by counting list", () -> getVendorCount(persons));
-
         Supplier<Long> countByStream = () -> persons.stream().filter(p -> p.isVendor()).collect(Collectors.counting());
         invokeMethod("Vendors by Stream", countByStream);
         Supplier<Long> countByParallelStream = () -> persons.parallelStream().filter(p -> p.isVendor()).collect(Collectors.counting());
