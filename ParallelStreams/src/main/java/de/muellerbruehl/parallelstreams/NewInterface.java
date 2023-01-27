@@ -6,9 +6,8 @@
 package de.muellerbruehl.parallelstreams;
 
 /**
- *
  * @author mmueller
  */
 public interface NewInterface {
-  
+
 }

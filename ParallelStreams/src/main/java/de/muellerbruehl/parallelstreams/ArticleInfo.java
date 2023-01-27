@@ -1,38 +1,40 @@
 package de.muellerbruehl.parallelstreams;
 
 public class ArticleInfo {
-  private final int _articleNo;
-  private long _quantity;
-  private Money _amount; 
+    private final int _articleNo;
+    private long _quantity;
+    private Money _amount;
 
-  public ArticleInfo (int articleNo){
-    _articleNo = articleNo;
-    _amount = new Money();
-  }
-  public int getArticleNo() {
-    return _articleNo;
-  }
+    public ArticleInfo(int articleNo) {
+        _articleNo = articleNo;
+        _amount = new Money();
+    }
 
-  public long getQuantity() {
-    return _quantity;
-  }
+    public int getArticleNo() {
+        return _articleNo;
+    }
 
-  public void setQuantity(long quantity) {
-    _quantity = quantity;
-  }
+    public long getQuantity() {
+        return _quantity;
+    }
 
-  public Money getAmount() {
-    return _amount;
-  }
+    public void setQuantity(long quantity) {
+        _quantity = quantity;
+    }
 
-  public void setAmount(Money amount) {
-    _amount = amount;
-  }
-  
-  public void addQuantity (long quantity){
-    _quantity += quantity;
-  }
-  public void addPrice(long cents){
-    _amount.add(cents);
-  }
+    public Money getAmount() {
+        return _amount;
+    }
+
+    public void setAmount(Money amount) {
+        _amount = amount;
+    }
+
+    public void addQuantity(long quantity) {
+        _quantity += quantity;
+    }
+
+    public void addPrice(long cents) {
+        _amount.add(cents);
+    }
 }
